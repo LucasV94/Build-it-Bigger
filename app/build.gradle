@@ -4,6 +4,10 @@ android {
     compileSdkVersion 25
     buildToolsVersion "24.0.3"
 
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 16
@@ -18,6 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+        }
+
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+    }
 }
 
 dependencies {
@@ -28,7 +43,10 @@ dependencies {
     compile project(':jokeslibrary')
     compile project(':jokesdisplay')
     compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.google.android.gms:play-services-ads:10.0.1'
+    freeCompile 'com.google.android.gms:play-services-ads:10.0.1'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':backend', configuration: 'android-endpoints')
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support:support-annotations:25.1.1'
 }
